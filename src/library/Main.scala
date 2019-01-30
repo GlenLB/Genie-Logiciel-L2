@@ -24,6 +24,7 @@ object Main extends App {
 //    
 //    println("ok")
     
-    var filtre = new Filtrage()
+    var filtre = new FiltrageURL()
     println(filtre.filtreAnnonce(ExempleHtml.exemple))
+    
 }
