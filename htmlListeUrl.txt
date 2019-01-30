@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta content="text/html" charset="utf8">
+</meta>
+<title>
+Résultats</title>
+</head>
+<body>
+<center>
+<ol>
+<li>
+<a href="http://url.fr">
+a</a>
+</li>
+<li>
+<a href="http://url.fr">
+a2</a>
+</li>
+</ol>
+</center>
+</body>
+</html>
