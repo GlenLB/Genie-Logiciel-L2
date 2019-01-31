@@ -1,8 +1,8 @@
+![Robot web](https://getnewsbot.com/assets/bot-69b45e7c9b1ab4062fa228f889bdcb3947cfa62915d38ddfecf2e935881af64d.svg)
+
 # Robot web
 
 ## Projet réalisé en Génie Logiciel dans le cadre d'un TP de l'Université de Rennes 1
-
-![Robot web](https://getnewsbot.com/assets/bot-69b45e7c9b1ab4062fa228f889bdcb3947cfa62915d38ddfecf2e935881af64d.svg)
 
 -------------------------------
 
