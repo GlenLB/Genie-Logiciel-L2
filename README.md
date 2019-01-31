@@ -4,15 +4,11 @@
 
 ## Projet réalisé en Génie Logiciel dans le cadre d'un TP de l'Université de Rennes 1
 
--------------------------------
-
 ## Liste des participants sur ce projet :
 * Glen Le Baill
 * Alban Le Goff
 * Antoine Bouffard
 * (**Ajoutez votre nom à la liste**)
-
----------------------------------
 
 ### Objectifs du programme
 
