@@ -1,6 +1,6 @@
 package library
 
-class Html2StringClass extends library.Html2String {
+object Html2StringClass extends library.Html2String {
 
     def process(h: Html): String = {
         var a = "" // variable utilise par les attributs
@@ -17,7 +17,7 @@ class Html2StringClass extends library.Html2String {
     }
 
 
-    def createAttr(attr: List[(String, String)]): String = {
+    private def createAttr(attr: List[(String, String)]): String = {
         var res = ""
         for (a <- attr) {
             res += " " + a._1 + "=" + "\"" + a._2 + "\""

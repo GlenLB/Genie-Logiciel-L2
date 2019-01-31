@@ -3,7 +3,7 @@ package library
 /**
  *  Implémente l'interface library.AnalysePage /
  */
-class AnalysePage2 extends library.AnalysePage {
+object AnalysePage2 extends library.AnalysePage {
     /**
      * A partir d'une URL de requête sur le site de référence et d'une expression exp,
      * retourne des pages issues de la requête et satisfaisant l'expression.

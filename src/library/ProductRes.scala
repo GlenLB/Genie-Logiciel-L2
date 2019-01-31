@@ -1,6 +1,6 @@
 package library
 
-class ProductRes extends library.ProductionResultat {
+object ProductRes extends library.ProductionResultat {
 
     def resultat2html(l: List[(String, String)]): Html = {
         var listeURL: List[Html] = List()
