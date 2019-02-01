@@ -14,8 +14,7 @@ object ProductRes extends library.ProductionResultat {
                         Tag("meta", List(("content", "text/html"), ("charset", "utf8")), List()),
                         Tag("title", List(), List(Text("Résultats"))))),
                 Tag("body", List(), List(
-                    Tag("center", List(), List(
-                        Tag("ol", List(), listeURL)))))))
+                   Tag("ol", List(), listeURL)))))
         html
     }
 }

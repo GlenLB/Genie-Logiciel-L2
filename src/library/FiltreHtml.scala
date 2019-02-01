@@ -33,4 +33,36 @@ object FiltreHtml extends library.FiltrageHtml {
         }
     }
 
+    /**
+     * @param e l'expression entrée par l'utilisateur
+     * @return la liste des mots clés tapés par l'utilisateur
+     */
+    def motsCles(e: Expression): String = {
+        var res = ""
+        e match {
+            case Or(mot1, mot2)  =>
+                res += motsCles(mot1); res += motsCles(mot2)
+            case And(mot1, mot2) =>
+                res += motsCles(mot1); res += motsCles(mot2)
+            case Word(mot)       => res += mot + ";"
+        }
+        res
+    }
+
+    /**
+     * @param requrequeteUtilisateur l'Expression entrée par l'utilisateur
+     * @return le morceau d'URL à insérer dans le champ keywords de l'URL
+     */
+    def formerRequeteMotsCles(requeteUtilisateur: Expression): String = {
+        val mots: String = motsCles(requeteUtilisateur)
+        var listeMots: Array[String] = mots.split(";")
+        var motsClesAInsererURL = ""
+        for (mot <- listeMots) {
+            motsClesAInsererURL += mot + "+"
+        }
+        // enleve le dernier "+" en trop
+        motsClesAInsererURL = motsClesAInsererURL.dropRight(1)
+        return motsClesAInsererURL
+    }
+
 }

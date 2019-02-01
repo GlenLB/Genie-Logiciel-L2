@@ -16,7 +16,8 @@ object Main extends App {
     val requeteUtilisateur: Expression = ExpressionParser.readExp
     println(requeteUtilisateur)
     /* construit l'URL à passer à Vivastreet */
-    val URL = "https://search.vivastreet.com/annonces/fr?lb=new&search=1&start_field=1&select-this=00&searchGeoId=0&offer_type=offer&end_field="
+    val motsClesAInsererURL = FiltreHtml.formerRequeteMotsCles(requeteUtilisateur)
+    val URL = "https://search.vivastreet.com/annonces/fr?lb=new&search=1&start_field=1&keywords=" + motsClesAInsererURL + "&cat_1=&geosearch_text=&searchGeoId=0"
     println(URL)
     /* Obtenir la liste des tuples (titre, URL) qui satisfont la requete */
     val listeTitreURL: List[(String, String)] = AnalysePage2.resultats(URL, requeteUtilisateur)
