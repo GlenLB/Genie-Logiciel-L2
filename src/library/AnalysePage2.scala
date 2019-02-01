@@ -14,10 +14,13 @@ object AnalysePage2 extends library.AnalysePage {
      * satisfaisant l'expression et titre est son titre.
      */
     def resultats(url: String, exp: Expression): List[(String, String)] = {
+        /* récupère le document HTML */
         val s: Html = UrlProcessor.fetch(url)
         var filtrageUrl = new FiltrageURL()
+        /* on récupère les URL et on ne garde que celles qui nous intéressent */
         val lidt: List[String] = filtrageUrl.filtreAnnonce(s)
         var list: List[Html] = List()
+        /* pour chaque URL gardée, on récupère le document HTML */
         for (ruls <- lidt) {
             list = UrlProcessor.fetch(ruls) :: list
         }
@@ -43,28 +46,11 @@ object AnalysePage2 extends library.AnalysePage {
      * @return le titre d'un document HTML
      */
     private def titreHtml(h: Html): String = {
-        var res: String = ""
+        var res = ""
         h match {
-            case Text(n)            => ""
-            case Tag("title", b, v) => titreRec(v)
-            case Tag(b, g, j) => for (htm <- j) {
-                res += titreHtml(htm)
-            }
-        }
-        res
-    }
-
-    /**
-     * Méthode utile à la méthode titreHtml()
-     * @return le premier texte rencontré dans une liste de HTML
-     */
-    private def titreRec(n: List[Html]): String = {
-        var res: String = ""
-        for (f <- n) {
-            f match {
-                case Text(w)      => res += w
-                case Tag(_, _, _) => println("tag")
-            }
+            case Tag(title, _, List(Text(titre))) => if (title == "title") return titre
+            case Tag(_, _, reste)                 => for (balise <- reste) { res += titreHtml(balise) };
+            case Text(_)                          => res += ""
         }
         res
     }
