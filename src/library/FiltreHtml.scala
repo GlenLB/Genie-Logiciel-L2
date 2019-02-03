@@ -13,6 +13,11 @@ object FiltreHtml extends library.FiltrageHtml {
         filtre1(htmltostring(h), e)
     }
 
+    /**
+     * @param s une String
+     * @param e une Expression
+     * @return true ssi s vérifie e
+     */
     private def filtre1(s: String, e: Expression): Boolean = {
         e match {
             case Or(k, l)  => filtre1(s, k) || filtre1(s, l)
@@ -21,6 +26,10 @@ object FiltreHtml extends library.FiltrageHtml {
         }
     }
 
+    /**
+     * @param h un élément Html
+     * @return une String contenant tous les Text de h
+     */
     private def htmltostring(h: Html): String = {
         var res: String = ""
         h match {
@@ -40,11 +49,11 @@ object FiltreHtml extends library.FiltrageHtml {
     def motsCles(e: Expression): String = {
         var res = ""
         e match {
-            case Or(mot1, mot2)  =>
+            case Or(mot1, mot2) =>
                 res += motsCles(mot1); res += motsCles(mot2)
             case And(mot1, mot2) =>
                 res += motsCles(mot1); res += motsCles(mot2)
-            case Word(mot)       => res += mot + ";"
+            case Word(mot) => res += mot + ";"
         }
         res
     }

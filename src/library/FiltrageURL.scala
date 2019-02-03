@@ -2,27 +2,39 @@ package library
 
 class FiltrageURL {
 
+    /**
+     * @param l une liste de [(String, String)]
+     * @return la liste des URL trouvées
+     */
     def listeUrl(l: List[(String, String)]): List[String] = {
         l match {
             case Nil        => Nil
             case x :: suite => if (x._1 == "href") x._2 :: listeUrl(suite) else listeUrl(suite)
         }
     }
+
+    /**
+     * @param s un String
+     * @return true ssi s contient au moins 9 chiffres
+     */
     def contient9Chiffres(s: String): Boolean = {
+        /* compteur */
         var count: Int = 0;
         for (n <- s) {
+            /* pour chaque chiffre trouvé dans s, le compteur est incrémenté */
             if (n <= '9' && n >= '0') {
                 count += 1
-
             }
         }
-        if (count >= 9) {
-            true
-        } else {
-            false
-        }
+        /* return true ssi s contient au moins 9 chiffres */
+        count >= 9
     }
 
+    /**
+     * @param l une liste de String
+     * @return une liste de String correspondant à tous les liens valides d'une recherche
+     * c'est a dire un lien du site web vivastreet contenant au moins 9 chiffres
+     */
     def filtrage(l: List[String]): List[String] = {
         l match {
             case Nil    => Nil
@@ -31,6 +43,23 @@ class FiltrageURL {
         }
 
     }
+
+    /**
+     * @param h un Html
+     * @return une liste de String filtrée pour vérifier que le tag est un lien
+     */
+    def filtreAnnonce(h: Html): List[String] = {
+        h match {
+            case Text(_)      => Nil
+            case Tag(_, x, y) => filtrage(listeUrl(x)) ++ filtreAnnonceBis(y)
+        }
+    }
+
+    /**
+     * Fonction annexe pour utile à filtreAnnonce
+     * @param h une liste d'Html
+     * @return la liste en envoyant les Html un par un à filtreAnnonce
+     */
     def filtreAnnonceBis(h: List[Html]): List[String] = {
         h match {
             case Nil    => Nil
@@ -38,12 +67,7 @@ class FiltrageURL {
         }
 
     }
-    def filtreAnnonce(h: Html): List[String] = {
-        h match {
-            case Text(_)      => Nil
-            case Tag(_, x, y) => filtrage(listeUrl(x)) ++ filtreAnnonceBis(y)
-        }
-    }
+
     //Test --------------------------------------------------------------------------------------------------------------------
     // val lll :List[String] = filtreAnnonce(UrlProcessor.fetch("https://www.vivastreet.com/voiture-occasion/fr"))
     // println(lll)
