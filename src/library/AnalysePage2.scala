@@ -18,23 +18,22 @@ object AnalysePage2 extends library.AnalysePage {
         val s: Html = UrlProcessor.fetch(url)
         var filtrageUrl = new FiltrageURL()
         /* on récupère les URL et on ne garde que celles qui nous intéressent */
-        val lidt: List[String] = filtrageUrl.filtreAnnonce(s)
-        var list: List[Html] = List()
-        /* pour chaque URL gardée, on récupère le document HTML */
+        val lidt: List[String] = filtrageUrl.filtreAnnonce(s) 
+        var list: List[Html] = List() 
         for (ruls <- lidt) {
-            list = UrlProcessor.fetch(ruls) :: list
-        }
+          list = UrlProcessor.fetch(ruls) :: list 
+          }
         var coup: List[(String, Html)] = List()
         var i: Int = 0
-        for (htm <- list) {
-            if (FiltreHtml.filtreHtml(htm, exp)) {
-                lidt.lift(i) match {
-                    case Some(c) => coup = (c, htm) :: coup
-                    case None    => println("pas d'url")
-                }
+        for (htm <- lidt) { 
+          if (FiltreHtml.filtreHtml(UrlProcessor.fetch(htm), exp)) {
+            lidt.lift(i) match {
+              case Some(c) => coup = (c, UrlProcessor.fetch(htm)) :: coup
+              case None => println("pas d'url") 
+              }
             }
-            i += 1
-        }
+          i += 1 
+          }
         var cople: List[(String, String)] = List()
         for (coupl <- coup) {
             cople = (titreHtml(coupl._2), coupl._1) :: cople
