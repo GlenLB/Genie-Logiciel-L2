@@ -40,10 +40,10 @@ object Main extends App {
     URL = "https://search.vivastreet.com/annonces/fr" + tabPage + "lb=new&search=1&start_field=1&keywords=" + motsClesAInsererURL + "&cat_1=&geosearch_text=&searchGeoId=0"
   }
   println(listeTitreURL)
-  /* Produire le document HTML qui liste les liens obtenus */
+  /* Produire le document HTML sous forme d'arbre de syntaxe abstraite qui liste les liens obtenus */
   val HTML: Html = ProductRes.resultat2html(listeTitreURL)
   println(HTML)
-  /* Convertir le HTML en chaine de caractères */
+  /* Convertir le HTML sous forme d'arbre de syntaxe abstraite en une chaine de caractères qui représente un HTML valide */
   val chaineHTML: String = Html2StringClass.process(HTML)
   println(chaineHTML)
   /* Ecrire cette chaine de caractères dans un fichier .html qui est la réponse attendue */
@@ -51,6 +51,7 @@ object Main extends App {
   writer.write(chaineHTML)
   writer.close
   println("Fichier créé")
+  /* Ouvrir ce fichier dans un nouvel onglet dans Firefox */
   val retour = "firefox listeURL.html"
   retour !
 }
